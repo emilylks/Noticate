@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  width: 20vw;
+  width: 40vw;
   margin-top: 3vh;
   margin-right: 3vw;
 }
@@ -35,4 +35,59 @@
   color: #6B7A99;
   font-weight: bold;
   font-size: calc(8px + 2vmin);
+}
+
+.search-container {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #000;
+  border-width: 1px;
+  width: 17vw;
+  height: 4.5vh;
+}
+
+.search-input {
+  border-style: solid;
+  border-color: #FFF;
+}
+
+.notes-feed {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-entry {
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 50%;
+  width: 80vw;
+  margin-top: 5vh;
+}
+
+.note-left {
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: 600px;
+  width: 500px;
+  background-color: #E8ECEF
+}
+
+.note-right {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 300px;
+  background-color: #E8ECEF
 }
