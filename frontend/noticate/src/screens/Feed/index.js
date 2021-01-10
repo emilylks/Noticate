@@ -203,11 +203,6 @@ function Feed() {
       <ul id="notes-feed">
         {/* starts empty, filled dynamically */}
       </ul>
-<<<<<<< HEAD
-      <button onClick={routeChange}> Redirect </button>
-
-=======
->>>>>>> 13a57952010990e034227f09cb2cb04ad0158154
     </div>
   );
 }
