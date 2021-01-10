@@ -2,7 +2,14 @@ p {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  font-size: 30px
+  font-size: 15px
 }
 
-
+.accOpptions {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30vw;
+  margin-top: 2vh;
+}

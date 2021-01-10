@@ -5,6 +5,35 @@ import Blob2 from '../../assets/Component2.png';
 import Blob3 from '../../assets/Component3.png';
 import { GoogleLogin } from 'react-google-login';
 
+import './index.css'; 
+import styled from 'styled-components'; 
+
+const theme = {
+  SignIn: {
+    background: "#6B7A99",
+    text: "white"
+  },
+  SignUp: {
+    background: "white",
+    text: "#6B7A99"
+  }
+};
+const Button = styled.button`
+  display: inline-block;
+  border-radius: 30px;
+  padding: 0.5rem 0;
+  font-size: 1em;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  background: ${(props) => theme[props.theme].background};
+  color: ${(props) => theme[props.theme].text};
+  border: 2px solid #6B7A99;
+`
+
+Button.defaultProps = {
+  theme: "SignIn"
+};
+
 function Landing() {
   function loginSuccess(res) {
     console.log("Login successful");
@@ -16,6 +45,7 @@ function Landing() {
     console.log(res);
   }
 
+
   return (
     <div>
       <img src = {Blob1} alt="blob1" style={{ position: 'absolute' }}/>
@@ -24,20 +54,24 @@ function Landing() {
 
       <div style={{ position: 'absolute', top: '10%', left: '40%', textAlign: 'center' }} >
         <img src = {Logo} alt="logo" style={{}} />
-        <h1 style = {{marginTop: -30}}>Noticate</h1>
-        <p>This is some text .</p>
-      </div>
+        <h1 font = 'Playfair Display' style ={{ marginTop: -30, color: '#48536A', fontSize: 50}}>Noticate </h1>
+        
+      
+        <div>
 
-
-
-      <p>Landing Page</p>
-      <GoogleLogin
+        <GoogleLogin 
+        style = {{borderRadius: 100}}
         clientId='1072009986202-bj557860kagjt30ti31vcfgf8heeoprg.apps.googleusercontent.com'
         buttonText="Log In"
         onSuccess={loginSuccess}
         onFailure={loginFailure}
         isSignedIn={true}
       />
+
+         
+      </div>
+      </div>
+      
     </div>
   );
 }
