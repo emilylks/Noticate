@@ -10,7 +10,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 30vw;
+  width: 45vw;
   margin-top: 2vh;
 }
 
@@ -28,7 +28,7 @@ p {
   justify-content: space-between;
   height: 50%;
   width: 85vw;
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .noteLeft {
@@ -61,6 +61,71 @@ p {
   background-color: #E8ECEF
 }
 
+.noteTitleLeft {
+  font-size: 25px;
+  margin-top: 470px;
+  margin-inline-start: -290px;
+  font-weight: bold;
+}
+
+.noteAuthorLeft {
+  font-size: 20px;
+  margin-top: -25px;
+  margin-left: -390px;
+
+}
+
+.noteDateLeft {
+  font-size: 15px;
+  margin-top: -20px;
+  margin-left: -340px;
+  color: #3968CA;
+  font-weight: bold;
+}
+
+.noteTitleMiddle {
+  font-size: 25px;
+  margin-top: 470px;
+  margin-inline-start: -270px;
+  font-weight: bold;
+}
+
+.noteAuthorMiddle {
+  font-size: 20px;
+  margin-top: -25px;
+  margin-left: -390px;
+
+}
+
+.noteDateMiddle {
+  font-size: 15px;
+  margin-top: -20px;
+  margin-left: -340px;
+  color: #3968CA;
+  font-weight: bold;
+}
+
+.noteTitleRight {
+  font-size: 25px;
+  margin-top: 470px;
+  margin-inline-start: -290px;
+  font-weight: bold;
+}
+
+.noteAuthorRight {
+  font-size: 20px;
+  margin-top: -25px;
+  margin-left: -385px;
+}
+
+.noteDateRight {
+  font-size: 15px;
+  margin-top: -20px;
+  margin-left: -335px;
+  color: #3968CA;
+  font-weight: bold;
+}
+
 .popup-content {
   width: 60%;
   height: 80%;
@@ -68,4 +133,67 @@ p {
   background-color: white;
   box-shadow: 3px 3px;
   border-radius: 10px;
+}
+
+.popup-contents {
+  width: 80%;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 3vw;
+  padding-top: 3vh
+}
+
+.name-upload {
+  height: 8vh;
+  font-size: 20px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-radius: 10px
+}
+
+.popup-rowcontent {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.friendLeft {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
+
+.friendMiddle {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
+
+.friendRight {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
+
+.friendEntry {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50%;
+  width: 85vw;
+  margin-top: 10vh;
 }
