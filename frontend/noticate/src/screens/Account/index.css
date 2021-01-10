@@ -38,7 +38,7 @@ p {
   justify-content: center;
   height: 40vh;
   width: 25vw;
-  background-color: #efe8eb
+  background-color: #E8ECEF
 }
 
 .noteMiddle {
@@ -61,9 +61,68 @@ p {
   background-color: #E8ECEF
 }
 
-.noteTitle {
-  font-size: calc(20px + 2vmin);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+.noteTitleLeft {
+  font-size: 25px;
+  margin-top: 470px;
+  margin-inline-start: -290px;
+  font-weight: bold;
+}
+
+.noteAuthorLeft {
+  font-size: 20px;
+  margin-top: -25px;
+  margin-left: -20vw;
+
+}
+
+.noteDateLeft {
+  font-size: 15px;
+  margin-top: -20px;
+  margin-left: -50px;
+  color: #3968CA;
+  font-weight: bold;
+}
+
+.noteTitleMiddle {
+  font-size: 25px;
+  margin-top: 470px;
+  margin-inline-start: -290px;
+  font-weight: bold;
+}
+
+.noteAuthorMiddle {
+  font-size: 20px;
+  margin-top: -25px;
+  margin-left: -20vw;
+
+}
+
+.noteDateMiddle {
+  font-size: 15px;
+  margin-top: -20px;
+  margin-left: -50px;
+  color: #3968CA;
+  font-weight: bold;
+}
+
+.noteTitleRight {
+  font-size: 25px;
+  margin-top: 470px;
+  margin-inline-start: -290px;
+  font-weight: bold;
+}
+
+.noteAuthorRight {
+  font-size: 20px;
+  margin-top: -25px;
+  margin-left: -20vw;
+
+}
+
+.noteDateRight {
+  font-size: 15px;
+  margin-top: -20px;
+  margin-left: -50px;
+  color: #3968CA;
+  font-weight: bold;
 }
