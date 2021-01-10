@@ -19,12 +19,16 @@ function Feed() {
   var following = ["Emily", "Veronica"];
 
   useEffect(() => {
-    fetch("http://ec2-18-222-146-206.us-east-2.compute.amazonaws.com:9000/thelist", {
-      method: 'GET'
+    fetch(`http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:9000/thelist`, {
+      mode: 'cors',
+      method: 'GET',
     })
-    .then(res => {
-      console.log(res);
-      console.log(typeof res);
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log("Response from server is", responseJson);
+    })
+    .catch((error) => {
+         console.error(error);
     });
 
     formatNotes();
@@ -112,6 +116,7 @@ function Feed() {
         {/* starts empty, filled dynamically */}
       </ul>
       <button onClick={routeChange}> Redirect </button>
+
     </div>
   );
 }
