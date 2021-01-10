@@ -7,10 +7,13 @@ import { ReactComponent as UploadIcon } from '../../assets/UploadIcon.svg';
 function Feed() {
 
   useEffect(() => {
-    fetch('ec2-18-222-146-206.us-east-2.compute.amazonaws.com/thelist', {
+    fetch("http://ec2-18-222-146-206.us-east-2.compute.amazonaws.com:9000/thelist", {
       method: 'GET'
     })
-    .then((response) => console.log(response))
+    .then(res => {
+      console.log(res);
+      console.log(typeof res);
+    });
   }, []);
 
   return (
