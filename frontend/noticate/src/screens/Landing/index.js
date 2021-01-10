@@ -4,37 +4,10 @@ import Blob1 from '../../assets/Component1.png';
 import Blob2 from '../../assets/Component2.png';
 import Blob3 from '../../assets/Component3.png';
 import { GoogleLogin } from 'react-google-login';
-
-import './index.css'; 
-import styled from 'styled-components'; 
-
-const theme = {
-  SignIn: {
-    background: "#6B7A99",
-    text: "white"
-  },
-  SignUp: {
-    background: "white",
-    text: "#6B7A99"
-  }
-};
-const Button = styled.button`
-  display: inline-block;
-  border-radius: 30px;
-  padding: 0.5rem 0;
-  font-size: 1em;
-  margin: 0.5rem 1rem;
-  width: 11rem;
-  background: ${(props) => theme[props.theme].background};
-  color: ${(props) => theme[props.theme].text};
-  border: 2px solid #6B7A99;
-`
-
-Button.defaultProps = {
-  theme: "SignIn"
-};
+import './index.css';
 
 function Landing() {
+  
   function loginSuccess(res) {
     console.log("Login successful");
     window.location.href = "./feed";
@@ -44,7 +17,6 @@ function Landing() {
     console.log("Login Failed");
     console.log(res);
   }
-
 
   return (
     <div>
