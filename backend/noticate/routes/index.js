@@ -31,7 +31,12 @@ router.post("/upload", upload.single('avatar'), (req, res) => {
 });
 
 router.get('/thelist', function(req, res) {
-	return res.json({body: "Testing get request"});
+	res.set({
+		"Access-Control-Allow-Headers" : "Content-Type",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+	});
+	res.json({body: "Testing get request"});
 });
 
 /*
