@@ -3,8 +3,11 @@ import './index.css';
 import { ReactComponent as AccountIcon } from '../../assets/AccountIcon.svg';
 import { ReactComponent as HomeIcon } from '../../assets/HomeIcon.svg';
 import { ReactComponent as UploadIcon } from '../../assets/UploadIcon.svg';
+import SearchBarr from '../../assets/SearchBar.png';
+
 
 function Feed() {
+
  const routeChange = () => {
   window.location.href = "./account"
  } 
@@ -22,6 +25,7 @@ function Feed() {
   return (
     <div id="content">
       <div className="navigation-row">
+        <img src={SearchBarr} style = {{height: 30}} /> 
         <HomeIcon className="nav-icon" />
         <UploadIcon className="nav-icon" />
         <AccountIcon className="nav-icon" />
