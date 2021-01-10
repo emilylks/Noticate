@@ -12,10 +12,15 @@ function Landing() {
   function loginSuccess(res) {
     console.log("Login successful");
     console.log(res);
-    var data = { Id: res.profileObj.email, friends: [], files: [] };
+    var data = { userId: res.profileObj.email, friends: [], files: [] };
     fetch("http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:9000/users", {
+	mode: 'cors',
       method: 'POST',
-      body: JSON.stringify(data)
+	 headers: {
+        Accept: 'application/json',
+//        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({userId: "email@gmail.com"})
     }).then(() => {
       window.location.href = "./feed";
     });

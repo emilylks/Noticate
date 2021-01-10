@@ -14,6 +14,15 @@ function getUsers(req, res, next) {
 }
 
 function newUser(req, res, next) {
+	res.set({
+		"Access-Control-Allow-Headers" : "Content-Type",
+		"Access-Control-Allow-Headers" : "Accept",
+		"Access-Control-Allow-Origin": "http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:3000",
+		"Access-Control-Allow-Methods": "POST,GET"
+	});
+
+	console.log(req.body);
+
 	createUser(req.body)
 		.then(success => res.json(success))
 }
@@ -26,6 +35,7 @@ function addFriend(req, res, next) {
 
 // Helper functions
 const createUser = async (userParams) => {
+	console.log(userParams);
 	try {
 		const user = new User(userParams);
 		user.save();
@@ -61,5 +71,18 @@ const returnUsers = async (params) => {
 		return {msg: "Failed to get users"};
 	}
 }
+
+/*
+const returnFriends = async (params) => {
+	console.log("Trying to retrieve friends");
+	try {
+		let user = await User.findOne({userId : params.userId});
+		console.log(user);
+		let friends = user.friends;
+
+	}
+
+}
+*/
 
 module.exports = router;

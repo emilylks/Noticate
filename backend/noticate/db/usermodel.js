@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-	userId: {type: String, unique: true, required: true},
+	//userId: {type: String, unique: true, required: true},
+	userId: {type: String, unique: true },
 	friends: [{ friendId: String}],
 	files: [{ filename: String, url: String, tags: [{type: String}] }]
 });
