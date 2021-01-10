@@ -31,7 +31,7 @@ router.post("/upload", upload.single('avatar'), (req, res) => {
 
 router.get('/thelist', function(req, res){
 	var MongoClient = mongodb.MongoClient;
-	var url = 'mongodb://ec2-18-222-146-206.us-east-2.compute.amazonaws.com:27017/sampsite';
+	var url = 'mongodb://localhost:27017/sampsite';
 	MongoClient.connect(url, function(err, db){
 		if(err){
 			console.log("unable to connect", err);
@@ -44,9 +44,8 @@ router.get('/thelist', function(req, res){
 					res.send(err);
 				}
 				else if(result.length){
-					res.render('studentlist', {
-						"studentList": result;
-					})
+					console.log(collection.find());
+					res.send({"success":"SUCCESS!!!", "data":result});
 				}
 				else
 					res.send("no documents found");
