@@ -12,7 +12,13 @@ function Landing() {
   function loginSuccess(res) {
     console.log("Login successful");
     console.log(res);
-    window.location.href = "./feed";
+    var data = { Id: res.profileObj.email, friends: [], files: [] };
+    fetch("http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:9000/users", {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).then(() => {
+      window.location.href = "./feed";
+    });
   }
 
   function loginFailure(res) {

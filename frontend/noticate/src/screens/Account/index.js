@@ -209,6 +209,19 @@ function Account() {
     // fetch request here
   }
 
+  function submitForm() {
+    console.log("inside submit function");
+    var file = document.getElementById('avatar');
+    var id = document.getElementById('userId').value;
+    var tags = document.getElementById('tags').value;
+
+    console.log(tags);
+    fetch("http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:9000/upload", {
+      method: 'POST',
+      enctype: 'multipart/form-data'
+    });
+  }
+
   return (
     <div id="content">
     <div className="navigation-row">
@@ -240,6 +253,12 @@ function Account() {
         </form>
         <div className="popup-rowcontent">
           <AddFileIcon style={{color: '#3968CA'}}/>
+          <form action="http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:9000/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="avatar"></input>
+            <input type="hidden" name="userId" value="testUserId1" />
+            <input type="hidden" name="tags" value={["#math", "#cpen", "#work"]} />
+            <button>Submit</button>
+          </form>
           <div className="popup-inputs">
           </div>
         </div>
