@@ -121,10 +121,11 @@ router.get('/files', async function(req, res) {
 	console.log("Trying to get user's files");
 	console.log(req.body);
 	try {
-		let user = await User.find(req.body.userId);
+		let user = await User.findOne({userId: req.body.userId});
 		console.log(user);
-		console.log(user.files);
-		res.json({files: user.files, msg: "Success"});	
+		let files = user.files;
+		let links = files.map(a=>a.url);
+		res.json({files: links, msg: "Success"});	
 	}	
 	catch(error) {
 		console.log("Could Not get user's files");
