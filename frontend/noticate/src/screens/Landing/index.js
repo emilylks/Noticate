@@ -28,8 +28,6 @@ function Landing() {
         <p>This is some text .</p>
       </div>
 
-
-
       <p>Landing Page</p>
       <GoogleLogin
         clientId='1072009986202-bj557860kagjt30ti31vcfgf8heeoprg.apps.googleusercontent.com'
