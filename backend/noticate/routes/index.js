@@ -76,6 +76,7 @@ router.post("/upload", upload.single('avatar'), async (req, res) => {
 	await uploadFile(`uploads/${filenameorg}`);
 	await new Promise(r => setTimeout(r, 1000));
 	console.log("Trying to upload");
+	JSON.stringify(req.body);
 	console.log(req.body);
 
 	//var params = {Bucket: BUCKET_NAME, Key: filenameorg};
@@ -91,7 +92,7 @@ router.post("/upload", upload.single('avatar'), async (req, res) => {
 			throw 'User Not Found';
 
 		var files = user.files;
-		files.push({filename: filenameorg, url: url});	
+		files.push({filename: filenameorg, url: url, tags: req.body.tags});	
 		//console.log("filename = ", filenameorg);
 		console.log("files = ", files);
 		
