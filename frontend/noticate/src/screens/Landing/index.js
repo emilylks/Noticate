@@ -18,6 +18,14 @@ function Landing() {
 
   return (
     <div>
+    <GoogleLogin
+      clientId='1072009986202-bj557860kagjt30ti31vcfgf8heeoprg.apps.googleusercontent.com'
+      buttonText="Log In"
+      onSuccess={loginSuccess}
+      onFailure={loginFailure}
+      cookiePolicy={'single_host_origin'}
+      isSignedIn={true}
+    />
       <img src = {Blob1} alt="blob1" style={{ position: 'absolute' }}/>
       <img src = {Blob2} alt="blob2" style={{ position: 'absolute', left: '50%', marginTop: '38.5%', marginBottom: 0 }}/>
       <img src = {Blob3} alt="blob3" style={{ position: 'absolute', right: '0%' }} />
@@ -29,13 +37,6 @@ function Landing() {
       </div>
 
       <p>Landing Page</p>
-      <GoogleLogin
-        clientId='1072009986202-bj557860kagjt30ti31vcfgf8heeoprg.apps.googleusercontent.com'
-        buttonText="Log In"
-        onSuccess={loginSuccess}
-        onFailure={loginFailure}
-        isSignedIn={true}
-      />
     </div>
   );
 }
