@@ -12,6 +12,11 @@ function Account() {
                 {author: "You", date: new Date(2021, 0, 7), title: "i love python"},
                 {author: "You", date: new Date(2021, 0, 6), title: "i love backend"}];
 
+  const monthArray = ["January", "February", "March", "April", "May",
+  "June", "July", "August", "September", "October",
+  "November", "December"];
+  var friendList = ["Emily", "Veronica", "Francis", "Brielle"];
+
   useEffect(() => {
     fetch("http://ec2-18-222-146-206.us-east-2.compute.amazonaws.com:9000/thelist", {
     method: 'GET'
@@ -23,6 +28,18 @@ function Account() {
 
     formatYourNotes();
   }, []);
+
+  function extractDate(date) {
+    var year = date.getFullYear();
+    var month = monthArray[date.getMonth()];
+    var day = date.getDate();
+
+    return month + " " + day + ", " + year;
+  }
+
+  function emptyDOM(elem) {
+  	while (elem.firstChild) elem.removeChild(elem.firstChild);
+  }
 
   function addRow(arr, root) {
     var list = document.createElement('li');
@@ -46,7 +63,7 @@ function Account() {
       var author = document.createElement('p'); 
       author.textContent += "By: " + dumdum[i].author;
       var date = document.createElement('p');
-      date.textContent +=  dumdum[i].date; 
+      date.textContent += extractDate(dumdum[i].date); 
 
       if (i % 3 == 0) {
         var div1 = document.createElement('div');
@@ -82,14 +99,46 @@ function Account() {
         rowSoFar = [];
       }
     }
-
     if (rowSoFar.length > 0)
       addRow(rowSoFar, feed);
   }
 
-  const routeBack = () => {
-    window.location.href = "./feed"
+ function formatFollowing() {
+  emptyDOM(document.getElementById("all-notes"));
+  var feed = document.getElementById("all-notes");
+  var list = document.createElement('li');
+  var rowSoFar = [];
+  list.classList.add("noteEntry");
+
+
+  for (var i = 0; i < friendList.length; i++) {
+    var title = document.createElement('p'); 
+    title.textContent += friendList[i];
+
+    if (i % 3 == 0) {
+      var div1 = document.createElement('div');
+      div1.classList.add("noteLeft");
+      title.classList.add("noteTitleLeft");
+      div1.appendChild(title);
+      rowSoFar.push(div1);
+    } else if (i % 3 == 1) {
+      var div1 = document.createElement('div');
+      div1.classList.add("noteMiddle");
+      title.classList.add("noteTitleMiddle");
+      div1.appendChild(title);
+      rowSoFar.push(div1);
+    } else if (i % 3 == 2) {
+      var div1 = document.createElement('div');
+      div1.classList.add("noteRight");
+      div1.appendChild(title);
+      rowSoFar.push(div1);
+      addRow(rowSoFar, feed);
+      rowSoFar = [];
+    }
   }
+  if (rowSoFar.length > 0)
+    addRow(rowSoFar, feed);
+ }
 
   return (
     <div id="content">
@@ -103,9 +152,8 @@ function Account() {
       <AccountIcon className="nav-icon" />
     </div>
     <div className = 'accOpptions'>
-        <p className="filter">YOUR NOTES</p>
-        <p className="filter">FOLLOWING</p>
-        <p className="filter">FOLLOWERS</p>
+        <p className="filter" onClick={() => formatYourNotes()}>YOUR NOTES</p>
+        <p className="filter" onClick={() => formatFollowing()}>FOLLOWING</p>
     </div>
     <ul id="all-notes">
         {/* starts empty, filled dynamically */}

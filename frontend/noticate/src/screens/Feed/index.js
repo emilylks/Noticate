@@ -38,10 +38,6 @@ function Feed() {
     formatNotes();
   }, []);
 
-  const routeChange = () => {
-   window.location.href = "./account"
-  }
-
   function emptyDOM(elem) {
   	while (elem.firstChild) elem.removeChild(elem.firstChild);
   }
@@ -79,8 +75,6 @@ function Feed() {
     var date = document.createElement('p');
     author.textContent += elem.author;
     date.textContent += extractDate(elem.date);
-
-
 
     div1.appendChild(title);
     div1.appendChild(preview);
@@ -141,7 +135,6 @@ function Feed() {
       <ul id="notes-feed">
         {/* starts empty, filled dynamically */}
       </ul>
-      <button onClick={routeChange}> Redirect </button>
     </div>
   );
 }
