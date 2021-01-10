@@ -7,6 +7,7 @@ import { ReactComponent as AccountIcon } from '../../assets/AccountIcon.svg';
 import { ReactComponent as HomeIcon } from '../../assets/HomeIcon.svg';
 import { ReactComponent as UploadIcon } from '../../assets/UploadIcon.svg';
 import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
+import { ReactComponent as AddFileIcon } from '../../assets/AddFileIcon.svg';
 
 function Account() {
 
@@ -15,11 +16,12 @@ function Account() {
                 {author: "You", date: new Date(2021, 0, 8), title: "i love javascript"},
                 {author: "You", date: new Date(2021, 0, 7), title: "i love python"},
                 {author: "You", date: new Date(2021, 0, 6), title: "i love backend"}];
-
+  
   const monthArray = ["January", "February", "March", "April", "May",
   "June", "July", "August", "September", "October",
   "November", "December"];
-  var friendList = ["Emily", "Veronica", "Francis", "Brielle"];
+  var friendList = ["Emily", "Veronica", "Francis", "Brielle", "Bob", "Joe"];
+  var tagsList = ["math", "science", "history", "programming","calculus", "chemistry", "english", "spanish","coop", "midterms", "C/C++", "java"];
 
   useEffect(() => {
     fetch("http://ec2-18-222-146-206.us-east-2.compute.amazonaws.com:9000/thelist", {
@@ -48,7 +50,7 @@ function Account() {
   function addRow(arr, root) {
     var list = document.createElement('li');
     list.classList.add("noteEntry");
-
+  
     arr.forEach(elem => {
       list.appendChild(elem);
     });
@@ -107,7 +109,17 @@ function Account() {
     if (rowSoFar.length > 0)
       addRow(rowSoFar, feed);
   }
-
+  
+  function addRow2(arr, root) {
+    var list = document.createElement('li');
+    list.classList.add("friendEntry");
+  
+    arr.forEach(elem => {
+      list.appendChild(elem);
+    });
+    root.appendChild(list);
+  }
+ 
  function formatFollowing() {
     emptyDOM(document.getElementById("all-notes"));
     var feed2 = document.getElementById("all-notes");
@@ -122,6 +134,15 @@ function Account() {
       if (i % 3 == 0) {
         var div2 = document.createElement('div');
         div2.classList.add("noteLeft");
+        
+       /*var pic = document.createElement('img');
+        pic.src = '../../assets/SearcIcon.svg';
+        pic.setAttribute("height", "768");
+        pic.setAttribute("width", "768");
+        pic.setAttribute("alt", "pfp");
+        pic.classList.add("picStyle");
+        div2.appendChild(pic); */
+        
         title2.classList.add("noteTitleLeft");
         div2.appendChild(title2);
         rowSoFar2.push(div2);
@@ -137,49 +158,29 @@ function Account() {
         title2.classList.add("noteTitleRight");
         div2.appendChild(title2);
         rowSoFar2.push(div2);
-        addRow(rowSoFar2, feed2);
+        addRow2(rowSoFar2, feed2);
         rowSoFar2 = [];
       }
       if (rowSoFar2.length > 0)
-      addRow(rowSoFar2, feed2);
+      addRow2(rowSoFar2, feed2);
     }
   }
   
   function formatYourTags() {
     emptyDOM(document.getElementById("all-notes"));
-    var feed2 = document.getElementById("all-notes");
-    var list2 = document.createElement('li');
-    var rowSoFar2 = [];
-    list2.classList.add("friendEntry");
+    var feed3 = document.getElementById("all-notes");
+    var list3 = document.createElement('li');
 
-    for (var i = 0; i < friendList.length; i++) {
-      var title2 = document.createElement('p'); 
-      title2.textContent += friendList[i];
-
-      if (i % 3 == 0) {
-        var div2 = document.createElement('div');
-        div2.classList.add("friendLeft");
-        title2.classList.add("friendNameL");
-        div2.appendChild(title2);
-        rowSoFar2.push(div2);
-      } else if (i % 3 == 1) {
-        var div2 = document.createElement('div');
-        div2.classList.add("friendMiddle");
-        title2.classList.add("friendNameM");
-        div2.appendChild(title2);
-        rowSoFar2.push(div2);
-      } else if (i % 3 == 2) {
-        var div2 = document.createElement('div');
-        div2.classList.add("friendRight");
-        title2.classList.add("friendNameR");
-        div2.appendChild(title2);
-        rowSoFar2.push(div2);
-        addRow(rowSoFar2, feed2);
-        rowSoFar2 = [];
-      }
-      if (rowSoFar2.length > 0)
-      addRow(rowSoFar2, feed2);
-    }
+    tagsList.forEach(elem => {
+      var tdiv = document.createElement('div');
+      var tag = document.createElement('p');
+      tag.classList.add("tagText");
+      tdiv.classList.add("tagElement");
+      tag.textContent += "#"+elem;
+      tdiv.appendChild(tag);
+      list3.appendChild(tdiv);
+      feed3.appendChild(list3);
+    }); 
   }
 
   function uploadMenu() {
@@ -205,7 +206,7 @@ function Account() {
     <div className = 'accOpptions'>
         <p className="filter" onClick={() => formatYourNotes()}>YOUR NOTES</p>
         <p className="filter" onClick={() => formatFollowing()}>FOLLOWING</p>
-        <p className="filter" onClick={() => formatYourTags()}>FOLLOWING TAGS</p>
+        <p className="filter" onClick={() => formatYourTags()}>YOUR TAGS</p>
     </div>
     <ul id="all-notes">
         {/* starts empty, filled dynamically */}
@@ -216,7 +217,14 @@ function Account() {
            on='click'
            onCloseDocumentClick>
       <div className="popup-contents">
-        <p>Popup content here !!</p>
+        <form>
+          <input type="text" placeholder="Name" className="name-upload"/>
+        </form>
+        <div className="popup-rowcontent">
+          <AddFileIcon style={{color: '#3968CA'}}/>
+          <div className="popup-inputs">
+          </div>
+        </div>
       </div>
     </Popup>
   </div>

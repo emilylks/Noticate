@@ -11,7 +11,11 @@ p {
   align-items: center;
   justify-content: space-between;
   width: 45vw;
-  margin-top: 2vh;
+  margin-top: 3vh;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .all-notes {
@@ -94,7 +98,6 @@ p {
   font-size: 20px;
   margin-top: -25px;
   margin-left: -390px;
-
 }
 
 .noteDateMiddle {
@@ -135,34 +138,28 @@ p {
   border-radius: 10px;
 }
 
-.friendLeft {
+.popup-contents {
+  width: 80%;
   flex-direction: column;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40vh;
-  width: 25vw;
-  background-color: #E8ECEF
+  align-items: flex-start;
+  padding-left: 3vw;
+  padding-top: 3vh
 }
 
-.friendMiddle {
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40vh;
-  width: 25vw;
-  background-color: #E8ECEF
+.name-upload {
+  height: 8vh;
+  font-size: 20px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-radius: 10px
 }
 
-.friendRight {
-  flex-direction: column;
+.popup-rowcontent {
+  flex-direction: row;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 40vh;
-  width: 25vw;
-  background-color: #E8ECEF
+  justify-content: space-around;
 }
 
 .friendEntry {
@@ -172,5 +169,33 @@ p {
   justify-content: space-between;
   height: 50%;
   width: 85vw;
-  margin-top: 10em;
+  margin-top: 2rem;
+}
+
+.tagElement {
+  flex-direction: row;
+  display: flex;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E8ECEF;
+  border-style: none;
+  border-color: #E8ECEF;
+  border-radius: 0;
+  width: 15vw;
+  height: 8vh;
+}
+
+.tagText {
+  font-size: calc(5px + 2vmin);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: normal;
+  color: #3968CA;
+}
+
+.picStyle{
+  margin-left: 700px;
 }
