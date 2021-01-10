@@ -30,9 +30,12 @@ router.post("/upload", upload.single('avatar'), (req, res) => {
     return res.json({status: "OK"});
 });
 
+router.get('/thelist', function(req, res) {
+	return res.json({body: "Testing get request"});
+});
+
+/*
 router.get('/thelist', function(req, res){
-	var MongoClient = mongodb.MongoClient;
-	var url = 'mongodb://localhost:27017/sampsite';
 	MongoClient.connect(url, function(err, db){
 		if(err){
 			console.log("unable to connect", err);
@@ -55,5 +58,6 @@ router.get('/thelist', function(req, res){
 		}
 	});
 });
+*/
 
 module.exports = router;
