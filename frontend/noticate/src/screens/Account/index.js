@@ -7,6 +7,7 @@ import { ReactComponent as AccountIcon } from '../../assets/AccountIcon.svg';
 import { ReactComponent as HomeIcon } from '../../assets/HomeIcon.svg';
 import { ReactComponent as UploadIcon } from '../../assets/UploadIcon.svg';
 import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
+import { ReactComponent as AddFileIcon } from '../../assets/AddFileIcon.svg';
 
 function Account() {
 
@@ -101,7 +102,14 @@ function Account() {
            on='click'
            onCloseDocumentClick>
       <div className="popup-contents">
-        <p>Popup content here !!</p>
+        <form>
+          <input type="text" placeholder="Name" className="name-upload"/>
+        </form>
+        <div className="popup-rowcontent">
+          <AddFileIcon style={{color: '#3968CA'}}/>
+          <div className="popup-inputs">
+          </div>
+        </div>
       </div>
     </Popup>
   </div>
