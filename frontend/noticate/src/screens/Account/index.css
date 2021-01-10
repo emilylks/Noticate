@@ -25,6 +25,31 @@ ul {
   justify-content: center;
 }
 
+.search-friends {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button {
+  width: 80px;
+  height: 30px;
+  border-style: solid;
+  border-color: #E8ECEF;
+  background-color: #E8ECEF;
+  border-radius: 5px;
+  margin-left: 5px
+}
+
+.find-friendsbar {
+  width: 180px;
+  height: 30px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
 .noteEntry {
   flex-direction: row;
   display: flex;
@@ -198,4 +223,15 @@ ul {
 
 .picStyle{
   margin-left: 700px;
+}
+#file-upload {
+
+}
+
+#user-id {
+
+}
+
+#tags-input {
+  
 }

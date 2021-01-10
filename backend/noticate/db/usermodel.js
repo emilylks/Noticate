@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
 	userId: {type: String, unique: true, required: true},
 	friends: [{ friendId: String}],
-	files: [{ filename: String, url: String }]
+	files: [{ filename: String, url: String, tags: [{type: String}] }]
 });
 
 userSchema.set('toJSON', {

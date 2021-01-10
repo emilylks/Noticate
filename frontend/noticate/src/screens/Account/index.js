@@ -65,12 +65,12 @@ function Account() {
     list.classList.add("noteEntry");
 
     for (var i = 0; i < dumdum.length; i++) {
-      var title = document.createElement('p'); 
+      var title = document.createElement('p');
       title.textContent += dumdum[i].title;
-      var author = document.createElement('p'); 
+      var author = document.createElement('p');
       author.textContent += "By: " + dumdum[i].author;
       var date = document.createElement('p');
-      date.textContent += extractDate(dumdum[i].date); 
+      date.textContent += extractDate(dumdum[i].date);
 
       if (i % 3 == 0) {
         var div1 = document.createElement('div');
@@ -128,7 +128,7 @@ function Account() {
     list2.classList.add("friendEntry");
 
     for (var i = 0; i < friendList.length; i++) {
-      var title2 = document.createElement('p'); 
+      var title2 = document.createElement('p');
       title2.textContent += friendList[i];
 
       if (i % 3 == 0) {
@@ -165,7 +165,7 @@ function Account() {
       addRow2(rowSoFar2, feed2);
     }
   }
-  
+
   function formatYourTags() {
     emptyDOM(document.getElementById("all-notes"));
     var feed3 = document.getElementById("all-notes");
@@ -183,14 +183,44 @@ function Account() {
     }); 
   }
 
-  function uploadMenu() {
-    return (
-      <Popup trigger={<UploadIcon />} position="center">
-        <p>Popup content here !!</p>
-      </Popup>
-    );
+  function addFriends() {
+    emptyDOM(document.getElementById("all-notes"));
+    var feed = document.getElementById("all-notes");
+    var div = document.createElement('div');
+    var form = document.createElement('form');
+    var searchInput = document.createElement('input');
+    var submit = document.createElement('button');
+
+    div.classList.add("search-friends");
+    searchInput.classList.add("find-friendsbar");
+    searchInput.type = "text";
+    searchInput.placeholder = "Search by Email...";
+    submit.classList.add("search-button");
+    submit.onClick = findFriends(searchInput.textContent);
+    submit.textContent += "Submit";
+
+    form.appendChild(searchInput);
+    div.appendChild(form);
+    div.appendChild(submit);
+    feed.appendChild(div);
   }
-  
+
+  function findFriends(id) {
+    // fetch request here
+  }
+
+  function submitForm() {
+    console.log("inside submit function");
+    var file = document.getElementById('avatar');
+    var id = document.getElementById('userId').value;
+    var tags = document.getElementById('tags').value;
+
+    console.log(tags);
+    fetch("http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:9000/upload", {
+      method: 'POST',
+      enctype: 'multipart/form-data'
+    });
+  }
 
   return (
     <div id="content">
@@ -205,8 +235,9 @@ function Account() {
     </div>
     <div className = 'accOpptions'>
         <p className="filter" onClick={() => formatYourNotes()}>YOUR NOTES</p>
-        <p className="filter" onClick={() => formatFollowing()}>FOLLOWING</p>
-        <p className="filter" onClick={() => formatYourTags()}>YOUR TAGS</p>
+        <p className="filter" onClick={() => formatFollowing()}>FRIENDS</p>
+        <p className="filter" onClick={() => formatYourTags()}>MY TAGS</p>
+        <p className="filter" onClick={() => addFriends()}>ADD FRIENDS</p>
     </div>
     <ul id="all-notes">
         {/* starts empty, filled dynamically */}
@@ -222,6 +253,12 @@ function Account() {
         </form>
         <div className="popup-rowcontent">
           <AddFileIcon style={{color: '#3968CA'}}/>
+          <form action="http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:9000/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="avatar"></input>
+            <input type="hidden" name="userId" value="testUserId1" />
+            <input type="hidden" name="tags" value={["#math", "#cpen", "#work"]} />
+            <button>Submit</button>
+          </form>
           <div className="popup-inputs">
           </div>
         </div>

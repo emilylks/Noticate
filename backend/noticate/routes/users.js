@@ -4,13 +4,14 @@ const db = require('./../db/db.js');
 const User = db.User;
 
 // Add friend to friends list
+router.get('/', getUsers);
 router.post('/', newUser); 
 router.post('/friends', addFriend);
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+function getUsers(req, res, next) {
+	returnUsers(req.body)
+		.then(users => {res.json(users)})
+}
 
 function newUser(req, res, next) {
 	createUser(req.body)
@@ -45,6 +46,19 @@ const insertFriend = async (params) => {
 	}
 	catch (error) {
 		return ({msg: 'Could not add new friend'});
+	}
+}
+
+const returnUsers = async (params) => {
+	console.log("Trying to retrieve users");
+	try {
+//		let users = await User.find({}, {userId:1, friends:0, files:0});
+		let users = await User.find({}, {userId:1, _id:0});
+		console.log(users);
+		return ({users: users, status: 200, msg: "Retrieved users successfully"});
+	}
+	catch (error) {
+		return {msg: "Failed to get users"};
 	}
 }
 
