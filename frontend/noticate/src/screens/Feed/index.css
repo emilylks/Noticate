@@ -1,6 +1,38 @@
-p {
+#content {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.navigation-row {
+  flex-direction: row;
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 20vw;
+  margin-top: 3vh;
+  margin-right: 3vw;
+}
+
+.nav-icon {
+  color: #555555;
+}
+
+.filter-options {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30vw;
+  margin-top: 2vh;
+}
+
+.filter {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  font-size: 15px
+  color: #6B7A99;
+  font-weight: bold;
+  font-size: calc(8px + 2vmin);
 }
