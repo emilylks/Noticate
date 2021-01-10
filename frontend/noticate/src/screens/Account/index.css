@@ -38,7 +38,7 @@ p {
   justify-content: center;
   height: 40vh;
   width: 25vw;
-  background-color: #E8ECEF
+  background-color: #efe8eb
 }
 
 .noteMiddle {
@@ -59,4 +59,11 @@ p {
   height: 40vh;
   width: 25vw;
   background-color: #E8ECEF
+}
+
+.noteTitle {
+  font-size: calc(20px + 2vmin);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }

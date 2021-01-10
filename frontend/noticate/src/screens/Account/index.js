@@ -27,15 +27,16 @@ useEffect(() => {
   function formatYourNotes() {
     var accfeed = document.getElementById("all-notes");
     var list = document.createElement('li');
-    list.classList.add("noteEntry");
+    
+
     for(var i = 0; i< dumdum.length; i++) {
-      var title = dumdum[i].title;
-      var author = dumdum[i].author;
-      var date = dumdum[i].date;
       if (i%3 == 0) {
         var div1 = document.createElement('div');
+        var title = document.createElement('p');
         div1.classList.add("noteLeft");
         list.appendChild(div1);
+        title.textContent = dumdum[i].title;
+        title.classList.add("noteTitle");
       }
       else if (i%3 == 1) {
         var div2 = document.createElement('div');
@@ -46,9 +47,10 @@ useEffect(() => {
         var div3 = document.createElement('div');
         div3.classList.add("noteRight");
         list.appendChild(div3);
-        accfeed.appendChild(list);
       }
-      
+      accfeed.appendChild(list)
+      list.classList.add("noteEntry");
+     ;
     }
   }
   const routeBack = () => {
