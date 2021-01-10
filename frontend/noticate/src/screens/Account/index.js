@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -10,7 +10,8 @@ import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
 
 function Account() {
 
-  var dumdum = [{author: "You", date: new Date(2021, 0, 9), title: "i love verilog"},
+  const [open, setOpen] = useState(false);
+  var dumdum = [{author: "You", date: new Date(2021, 0 ,10), title: "i love verilog"},
                 {author: "You", date: new Date(2021, 0, 8), title: "i love javascript"},
                 {author: "You", date: new Date(2021, 0, 7), title: "i love python"},
                 {author: "You", date: new Date(2021, 0, 6), title: "i love backend"}];
@@ -55,6 +56,7 @@ function Account() {
   }
 
   function formatYourNotes() {
+    emptyDOM(document.getElementById("all-notes"));
     var feed = document.getElementById("all-notes");
     var list = document.createElement('li');
     var rowSoFar = [];
@@ -107,37 +109,76 @@ function Account() {
   }
 
  function formatFollowing() {
-  emptyDOM(document.getElementById("all-notes"));
-  var feed = document.getElementById("all-notes");
-  var div2 = document.createElement("div");
-  var list = document.createElement('li');
-  var rowSoFar = [];
-  list.classList.add("noteEntry");
+    emptyDOM(document.getElementById("all-notes"));
+    var feed2 = document.getElementById("all-notes");
+    var list2 = document.createElement('li');
+    var rowSoFar2 = [];
+    list2.classList.add("friendEntry");
 
-  for (var i = 0; i < friendList.length; i++) {
-    var title = document.createElement('p'); 
-    title.textContent += friendList[i];
+    for (var i = 0; i < friendList.length; i++) {
+      var title2 = document.createElement('p'); 
+      title2.textContent += friendList[i];
 
-    if (i % 3 == 0) {
-      var div1 = document.createElement('div');
-      div1.classList.add("noteLeft");
-      title.classList.add("noteTitleLeft");
-      div1.appendChild(title);
-      rowSoFar.push(div1);
-    } else if (i % 3 == 1) {
-      var div1 = document.createElement('div');
-      div1.classList.add("noteMiddle");
-      title.classList.add("noteTitleMiddle");
-      div1.appendChild(title);
-      rowSoFar.push(div1);
-    } else if (i % 3 == 2) {
-      var div1 = document.createElement('div');
-      div1.classList.add("noteRight");
-      title.classList.add("noteTitleRight");
-      div1.appendChild(title);
-      rowSoFar.push(div1);
-      addRow(rowSoFar, feed);
-      rowSoFar = [];
+      if (i % 3 == 0) {
+        var div2 = document.createElement('div');
+        div2.classList.add("noteLeft");
+        title2.classList.add("noteTitleLeft");
+        div2.appendChild(title2);
+        rowSoFar2.push(div2);
+      } else if (i % 3 == 1) {
+        var div2 = document.createElement('div');
+        div2.classList.add("noteMiddle");
+        title2.classList.add("noteTitleMiddle");
+        div2.appendChild(title2);
+        rowSoFar2.push(div2);
+      } else if (i % 3 == 2) {
+        var div2 = document.createElement('div');
+        div2.classList.add("noteRight");
+        title2.classList.add("noteTitleRight");
+        div2.appendChild(title2);
+        rowSoFar2.push(div2);
+        addRow(rowSoFar2, feed2);
+        rowSoFar2 = [];
+      }
+      if (rowSoFar2.length > 0)
+      addRow(rowSoFar2, feed2);
+    }
+  }
+  
+  function formatYourTags() {
+    emptyDOM(document.getElementById("all-notes"));
+    var feed2 = document.getElementById("all-notes");
+    var list2 = document.createElement('li');
+    var rowSoFar2 = [];
+    list2.classList.add("friendEntry");
+
+    for (var i = 0; i < friendList.length; i++) {
+      var title2 = document.createElement('p'); 
+      title2.textContent += friendList[i];
+
+      if (i % 3 == 0) {
+        var div2 = document.createElement('div');
+        div2.classList.add("friendLeft");
+        title2.classList.add("friendNameL");
+        div2.appendChild(title2);
+        rowSoFar2.push(div2);
+      } else if (i % 3 == 1) {
+        var div2 = document.createElement('div');
+        div2.classList.add("friendMiddle");
+        title2.classList.add("friendNameM");
+        div2.appendChild(title2);
+        rowSoFar2.push(div2);
+      } else if (i % 3 == 2) {
+        var div2 = document.createElement('div');
+        div2.classList.add("friendRight");
+        title2.classList.add("friendNameR");
+        div2.appendChild(title2);
+        rowSoFar2.push(div2);
+        addRow(rowSoFar2, feed2);
+        rowSoFar2 = [];
+      }
+      if (rowSoFar2.length > 0)
+      addRow(rowSoFar2, feed2);
     }
   }
 
@@ -148,9 +189,7 @@ function Account() {
       </Popup>
     );
   }
-  if (rowSoFar.length > 0)
-    addRow(rowSoFar, feed);
- }
+  
 
   return (
     <div id="content">
@@ -160,23 +199,27 @@ function Account() {
         <SearchIcon style={{width: 20, height: 20}} />
       </form>
       <HomeIcon className="nav-icon" onClick={() => window.location.href = './feed'}/>
-      <UploadIcon className="nav-icon" />
+      <UploadIcon className="nav-icon" onClick={() => setOpen(o => !o)}/>
       <AccountIcon className="nav-icon" />
     </div>
     <div className = 'accOpptions'>
         <p className="filter" onClick={() => formatYourNotes()}>YOUR NOTES</p>
         <p className="filter" onClick={() => formatFollowing()}>FOLLOWING</p>
+        <p className="filter" onClick={() => formatYourTags()}>FOLLOWING TAGS</p>
     </div>
     <ul id="all-notes">
         {/* starts empty, filled dynamically */}
-      </ul>
-    <Popup trigger={<UploadIcon />} position="center">
-      <div>
+    </ul>
+    <Popup open={open}
+           position="center center"
+           arrow={false}
+           on='click'
+           onCloseDocumentClick>
+      <div className="popup-contents">
         <p>Popup content here !!</p>
       </div>
     </Popup>
   </div>
-
   );
 }
 

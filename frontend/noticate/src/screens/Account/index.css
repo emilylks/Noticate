@@ -10,7 +10,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 30vw;
+  width: 45vw;
   margin-top: 2vh;
 }
 
@@ -28,7 +28,7 @@ p {
   justify-content: space-between;
   height: 50%;
   width: 85vw;
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .noteLeft {
@@ -116,7 +116,6 @@ p {
   font-size: 20px;
   margin-top: -25px;
   margin-left: -385px;
-
 }
 
 .noteDateRight {
@@ -127,15 +126,13 @@ p {
   font-weight: bold;
 }
 
-
-.tags {
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50vh;
-  width: 30vw;
-  background-color: #E8ECEF
+.popup-content {
+  width: 60%;
+  height: 80%;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 3px 3px;
+  border-radius: 10px;
 }
 
 .friendLeft {
@@ -166,4 +163,14 @@ p {
   height: 40vh;
   width: 25vw;
   background-color: #E8ECEF
+}
+
+.friendEntry {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50%;
+  width: 85vw;
+  margin-top: 10vh;
 }

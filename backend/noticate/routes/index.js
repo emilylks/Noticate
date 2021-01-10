@@ -80,9 +80,13 @@ router.post("/upload", upload.single('avatar'), async (req, res) => {
 
 	try {
 		let user = await User.findOne({ userId: req.body.userId }); 
+		console.log(user);
 		if (user === null)
 			throw 'User Not Found';
+		console.log("filename = ", filenameorg);
+		console.log("url = ", url);
 		user.files.push({filename: filenameorg, url: url});	
+		console.log("Pushed file");
 		return ({msg: "Success"});
 	}
 	catch (error) {
