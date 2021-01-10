@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -10,6 +10,7 @@ import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
 
 function Account() {
 
+  const [open, setOpen] = useState(false);
   var dumdum = [{author: "You", date: Date.now(), title: "i love verilog"},
                 {author: "You", date: new Date(2021, 0, 8), title: "i love javascript"},
                 {author: "You", date: new Date(2021, 0, 7), title: "i love python"},
@@ -84,7 +85,7 @@ function Account() {
         <SearchIcon style={{width: 20, height: 20}} />
       </form>
       <HomeIcon className="nav-icon" onClick={() => window.location.href = './feed'}/>
-      <UploadIcon className="nav-icon" />
+      <UploadIcon className="nav-icon" onClick={() => setOpen(o => !o)}/>
       <AccountIcon className="nav-icon" />
     </div>
     <div className = 'accOpptions'>
@@ -94,8 +95,12 @@ function Account() {
     <ul id="all-notes">
         {/* starts empty, filled dynamically */}
     </ul>
-    <Popup trigger={<UploadIcon />} position="center">
-      <div>
+    <Popup open={open}
+           position="center center"
+           arrow={false}
+           on='click'
+           onCloseDocumentClick>
+      <div className="popup-contents">
         <p>Popup content here !!</p>
       </div>
     </Popup>
