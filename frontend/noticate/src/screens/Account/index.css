@@ -13,3 +13,50 @@ p {
   width: 30vw;
   margin-top: 2vh;
 }
+
+.all-notes {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noteEntry {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50%;
+  width: 85vw;
+  margin-top: 15vh;
+}
+
+.noteLeft {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
+
+.noteMiddle {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
+
+.noteRight {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
