@@ -111,6 +111,29 @@ router.post("/upload", upload.single('avatar'), async (req, res) => {
 	return res.json({status: "OK"});
 });
 
+router.get('/files', async function(req, res) {
+	res.set({
+		"Access-Control-Allow-Headers" : "Content-Type",
+        "Access-Control-Allow-Origin": "http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:3000",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+	});
+	
+	console.log("Trying to get user's files");
+	console.log(req.body);
+	try {
+		let user = await User.findOne({userId: req.body.userId});
+		console.log(user);
+		let files = user.files;
+		let links = files.map(a=>a.url);
+		res.json({files: links, msg: "Success"});	
+	}	
+	catch(error) {
+		console.log("Could Not get user's files");
+	}
+	
+});
+
+
 router.get('/thelist', function(req, res) {
 	res.set({
 		"Access-Control-Allow-Headers" : "Content-Type",
