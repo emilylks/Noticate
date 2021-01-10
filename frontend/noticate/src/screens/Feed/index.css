@@ -68,7 +68,7 @@
   align-items: flex-start;
   justify-content: space-between;
   height: 50%;
-  width: 80vw;
+  width: 85vw;
   margin-top: 5vh;
 }
 
@@ -77,8 +77,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
-  height: 600px;
-  width: 500px;
+  height: 90vh;
+  width: 50vw;
   background-color: #E8ECEF
 }
 
@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 350px;
-  width: 300px;
+  height: 50vh;
+  width: 35vw;
   background-color: #E8ECEF
 }
