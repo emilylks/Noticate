@@ -6,6 +6,7 @@ const multer = require("multer");
 const uuid = require("uuid").v4;
 
 var mongodb = require('mongodb');
+var filenameorg;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -13,6 +14,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
       const { originalname } = file;
+	filenameorg = originalname;
       cb(null, originalname); 
   }
 })
@@ -27,13 +29,14 @@ const app = express();
 router.use(express.static('public'));
 
 router.post("/upload", upload.single('avatar'), (req, res) => {
-    return res.json({status: "OK"});
+    	console.log(filenameorg);
+	return res.json({status: "OK"});
 });
 
 router.get('/thelist', function(req, res) {
 	res.set({
 		"Access-Control-Allow-Headers" : "Content-Type",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": "http://ec2-18-189-16-11.us-east-2.compute.amazonaws.com:3000",
         "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
 	});
 	res.json({body: "Testing get request"});
