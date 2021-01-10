@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react';
 import './index.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 import { ReactComponent as AccountIcon } from '../../assets/AccountIcon.svg';
 import { ReactComponent as HomeIcon } from '../../assets/HomeIcon.svg';
 import { ReactComponent as UploadIcon } from '../../assets/UploadIcon.svg';
-import SearchBarr from '../../assets/SearchBar.png';
+import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
 
 function Account() {
 
@@ -17,8 +20,8 @@ function Account() {
     method: 'GET'
     })
     .then(res => {
-    console.log(res);
-    console.log(typeof res);
+      console.log(res);
+      console.log(typeof res);
     });
 
     formatYourNotes();
@@ -65,27 +68,37 @@ function Account() {
       addRow(rowSoFar, feed);
   }
 
-  const routeBack = () => {
-    window.location.href = "./feed"
+  function uploadMenu() {
+    return (
+      <Popup trigger={<UploadIcon />} position="center">
+        <p>Popup content here !!</p>
+      </Popup>
+    );
   }
 
   return (
     <div id="content">
     <div className="navigation-row">
-      <img src={SearchBarr} style = {{height: 30}} />
-      <HomeIcon className="nav-icon" />
+      <form className="search-container">
+        <input type="text" name="Search" className="search-input"/>
+        <SearchIcon style={{width: 20, height: 20}} />
+      </form>
+      <HomeIcon className="nav-icon" onClick={() => window.location.href = './feed'}/>
       <UploadIcon className="nav-icon" />
       <AccountIcon className="nav-icon" />
     </div>
     <div className = 'accOpptions'>
         <p className="filter">YOUR NOTES</p>
-        <p className="filter">FOLLOWING</p>
-        <p className="filter">FOLLERS</p>
+        <p className="filter">FRIENDS</p>
     </div>
     <ul id="all-notes">
         {/* starts empty, filled dynamically */}
-      </ul>
-    <button onClick={routeBack}> Redirect </button>
+    </ul>
+    <Popup trigger={<UploadIcon />} position="center">
+      <div>
+        <p>Popup content here !!</p>
+      </div>
+    </Popup>
   </div>
 
   );
