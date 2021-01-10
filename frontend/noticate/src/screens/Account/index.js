@@ -1,5 +1,8 @@
 import React, {useEffect} from 'react';
 import './index.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 import { ReactComponent as AccountIcon } from '../../assets/AccountIcon.svg';
 import { ReactComponent as HomeIcon } from '../../assets/HomeIcon.svg';
 import { ReactComponent as UploadIcon } from '../../assets/UploadIcon.svg';
@@ -22,8 +25,8 @@ function Account() {
     method: 'GET'
     })
     .then(res => {
-    console.log(res);
-    console.log(typeof res);
+      console.log(res);
+      console.log(typeof res);
     });
 
     formatYourNotes();
@@ -103,41 +106,10 @@ function Account() {
       addRow(rowSoFar, feed);
   }
 
-function appendNode(node, elem) {
-  var li = document.createElement('li');
-  var div1 = document.createElement('div');
-  var div2 = document.createElement('div');
-  li.classList.add("note-entry");
-  div1.classList.add("note-left");
-  div2.classList.add("note-right");
-
-  var title = document.createElement('p');
-  var preview = document.createElement('div');
-  title.textContent += elem.title;
-  title.classList.add("note-title");
-  preview.classList.add("note-preview");
-
-  var author = document.createElement('p');
-  var date = document.createElement('p');
-  author.textContent += elem.author;
-  date.textContent += extractDate(elem.date);
-
-  div1.appendChild(title);
-  div1.appendChild(preview);
-  li.appendChild(div1);
-  li.appendChild(div2);
-  node.appendChild(li);
-}
-
-function formatTags() {
-  var feed = document.getElementById("notes-tags");
-  tagsFollowing.forEach(elem => {
-    appendNode(feed, elem);
-  });
-}
  function formatFollowing() {
   emptyDOM(document.getElementById("all-notes"));
   var feed = document.getElementById("all-notes");
+  var div2 = document.createElement("div");
   var list = document.createElement('li');
   var rowSoFar = [];
   list.classList.add("noteEntry");
@@ -168,6 +140,14 @@ function formatTags() {
       rowSoFar = [];
     }
   }
+
+  function uploadMenu() {
+    return (
+      <Popup trigger={<UploadIcon />} position="center">
+        <p>Popup content here !!</p>
+      </Popup>
+    );
+  }
   if (rowSoFar.length > 0)
     addRow(rowSoFar, feed);
  }
@@ -190,6 +170,11 @@ function formatTags() {
     <ul id="all-notes">
         {/* starts empty, filled dynamically */}
       </ul>
+    <Popup trigger={<UploadIcon />} position="center">
+      <div>
+        <p>Popup content here !!</p>
+      </div>
+    </Popup>
   </div>
 
   );
