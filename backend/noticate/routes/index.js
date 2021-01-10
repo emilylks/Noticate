@@ -36,7 +36,8 @@ const storage = multer.diskStorage({
 })
 
 var url;
-const uploadFile = (fileName) => {
+const uploadFile = async (fileName) => {
+	console.log("TRYING TO UPLOAD FILE");
     // Read content from the file
     const fileContent = fs.readFileSync(fileName);
 
@@ -48,14 +49,17 @@ const uploadFile = (fileName) => {
     };
 
     // Uploading files to the bucket
-    s3.upload(params, function(err, data) {
+    await s3.upload(params, async function(err, data) {
         if (err) {
             throw err;
         }
         
 	console.log(`File uploaded successfully. ${data.Location}`);
 	url = data.Location;
+	return;
     });
+
+    return;
 };
 
 /* GET home page. */
@@ -69,8 +73,10 @@ router.use(express.static('public'));
 
 router.post("/upload", upload.single('avatar'), async (req, res) => {
 
-	uploadFile(`uploads/${filenameorg}`);
+	await uploadFile(`uploads/${filenameorg}`);
+	await new Promise(r => setTimeout(r, 1000));
 	console.log("Trying to upload");
+	JSON.stringify(req.body);
 	console.log(req.body);
 
 	//var params = {Bucket: BUCKET_NAME, Key: filenameorg};
@@ -79,15 +85,24 @@ router.post("/upload", upload.single('avatar'), async (req, res) => {
 	//});
 
 	try {
+		console.log(req.body.userId);
+		console.log("url = ", url);
 		let user = await User.findOne({ userId: req.body.userId }); 
-		console.log(user);
 		if (user === null)
 			throw 'User Not Found';
-		console.log("filename = ", filenameorg);
-		console.log("url = ", url);
-		user.files.push({filename: filenameorg, url: url});	
+
+		var files = user.files;
+		files.push({filename: filenameorg, url: url, tags: req.body.tags});	
+		//console.log("filename = ", filenameorg);
+		console.log("files = ", files);
+		
+		console.log(user.userId);
+		console.log(user.friends);
+		await User.replaceOne({userId: user.userId}, { userId: user.userId, friends: user.friends, files: files});
+		console.log(user);
+
 		console.log("Pushed file");
-		return ({msg: "Success"});
+		return res.json({status: "OK"});
 	}
 	catch (error) {
 		console.log("Could not add file to database");
