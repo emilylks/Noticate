@@ -50,8 +50,11 @@ const insertFriend = async (params) => {
 }
 
 const returnUsers = async (params) => {
+	console.log("Trying to retrieve users");
 	try {
-		let users = await User.find({}, {userId:1, friends:0, files:0});
+//		let users = await User.find({}, {userId:1, friends:0, files:0});
+		let users = await User.find({}, {userId:1, _id:0});
+		console.log(users);
 		return ({users: users, status: 200, msg: "Retrieved users successfully"});
 	}
 	catch (error) {
