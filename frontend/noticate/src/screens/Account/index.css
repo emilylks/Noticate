@@ -137,3 +137,33 @@ p {
   width: 30vw;
   background-color: #E8ECEF
 }
+
+.friendLeft {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
+
+.friendMiddle {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}
+
+.friendRight {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 25vw;
+  background-color: #E8ECEF
+}

@@ -103,13 +103,44 @@ function Account() {
       addRow(rowSoFar, feed);
   }
 
+function appendNode(node, elem) {
+  var li = document.createElement('li');
+  var div1 = document.createElement('div');
+  var div2 = document.createElement('div');
+  li.classList.add("note-entry");
+  div1.classList.add("note-left");
+  div2.classList.add("note-right");
+
+  var title = document.createElement('p');
+  var preview = document.createElement('div');
+  title.textContent += elem.title;
+  title.classList.add("note-title");
+  preview.classList.add("note-preview");
+
+  var author = document.createElement('p');
+  var date = document.createElement('p');
+  author.textContent += elem.author;
+  date.textContent += extractDate(elem.date);
+
+  div1.appendChild(title);
+  div1.appendChild(preview);
+  li.appendChild(div1);
+  li.appendChild(div2);
+  node.appendChild(li);
+}
+
+function formatTags() {
+  var feed = document.getElementById("notes-tags");
+  tagsFollowing.forEach(elem => {
+    appendNode(feed, elem);
+  });
+}
  function formatFollowing() {
   emptyDOM(document.getElementById("all-notes"));
   var feed = document.getElementById("all-notes");
   var list = document.createElement('li');
   var rowSoFar = [];
   list.classList.add("noteEntry");
-
 
   for (var i = 0; i < friendList.length; i++) {
     var title = document.createElement('p'); 
@@ -130,6 +161,7 @@ function Account() {
     } else if (i % 3 == 2) {
       var div1 = document.createElement('div');
       div1.classList.add("noteRight");
+      title.classList.add("noteTitleRight");
       div1.appendChild(title);
       rowSoFar.push(div1);
       addRow(rowSoFar, feed);
