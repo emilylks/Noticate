@@ -11,6 +11,15 @@ const fs = require('fs');
 // The name of the bucket that you have created
 const BUCKET_NAME = 'noticate';
 
+// Enter copied or downloaded access ID and secret key here
+const ID = 'AKIAIFRZMM5F55JW2HOQ';
+const SECRET = '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';
+
+const s3 = new AWS.S3({
+    accessKeyId: ID,
+    secretAccessKey: SECRET
+});
+
 var mongodb = require('mongodb');
 var filenameorg;
 
@@ -25,6 +34,7 @@ const storage = multer.diskStorage({
   }
 })
 
+var url;
 const uploadFile = (fileName) => {
     // Read content from the file
     const fileContent = fs.readFileSync(fileName);
@@ -32,7 +42,7 @@ const uploadFile = (fileName) => {
     // Setting up S3 upload parameters
     const params = {
         Bucket: BUCKET_NAME,
-        Key: 'cat.jpg', // File name you want to save as in S3
+        Key: filenameorg, // File name you want to save as in S3
         Body: fileContent
     };
 
@@ -41,7 +51,9 @@ const uploadFile = (fileName) => {
         if (err) {
             throw err;
         }
-        console.log(`File uploaded successfully. ${data.Location}`);
+        
+	console.log(`File uploaded successfully. ${data.Location}`);
+	url = data.Location;
     });
 };
 
@@ -55,8 +67,14 @@ const app = express();
 router.use(express.static('public'));
 
 router.post("/upload", upload.single('avatar'), (req, res) => {
+
 	uploadFile(`uploads/${filenameorg}`);
-    	console.log(filenameorg);
+
+	//var params = {Bucket: BUCKET_NAME, Key: filenameorg};
+	//s3.getSignedUrl('putObject', params, function (err, url) {
+  	//	console.log('The URL is', url);
+	//});
+	
 	return res.json({status: "OK"});
 });
 
