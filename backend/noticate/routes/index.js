@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const db = require('./../db/db.js');
+const User = db.User;
 
 const multer = require("multer"); 
 const uuid = require("uuid").v4;
@@ -66,15 +67,28 @@ const upload = multer({storage})
 const app = express();
 router.use(express.static('public'));
 
-router.post("/upload", upload.single('avatar'), (req, res) => {
+router.post("/upload", upload.single('avatar'), async (req, res) => {
 
 	uploadFile(`uploads/${filenameorg}`);
+	console.log("Trying to upload");
+	console.log(req.body);
 
 	//var params = {Bucket: BUCKET_NAME, Key: filenameorg};
 	//s3.getSignedUrl('putObject', params, function (err, url) {
   	//	console.log('The URL is', url);
 	//});
-	
+
+	try {
+		let user = await User.findOne({ userId: req.body.userId }); 
+		if (user === null)
+			throw 'User Not Found';
+		user.files.push({filename: filenameorg, url: url});	
+		return ({msg: "Success"});
+	}
+	catch (error) {
+		console.log("Could not add file to database");
+	}
+		
 	return res.json({status: "OK"});
 });
 
