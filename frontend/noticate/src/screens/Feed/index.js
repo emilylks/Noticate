@@ -15,6 +15,8 @@ function Feed() {
                   title: "i love python", tags: ["#cpen", "#school", "#study"]},
                  {author: "Brielle", date: Date.now(2021, 0, 6), school: "The Unversity of British Columbia",
                   title: "i love backend", tags: ["#math", "#code", "#study"]}];
+  var tags = ["#study", "#code"];
+  var following = ["Emily", "Veronica"];
 
   useEffect(() => {
     fetch("http://ec2-18-222-146-206.us-east-2.compute.amazonaws.com:9000/thelist", {
@@ -32,19 +34,61 @@ function Feed() {
    window.location.href = "./account"
   }
 
+  function emptyDOM(elem) {
+  	while (elem.firstChild) elem.removeChild(elem.firstChild);
+  }
+
+  function appendNode(node, elem) {
+    var li = document.createElement('li');
+    var div1 = document.createElement('div');
+    var div2 = document.createElement('div');
+    li.classList.add("note-entry");
+    div1.classList.add("note-left");
+    div2.classList.add("note-right");
+
+    var title = document.createElement('p');
+    title.textContent += elem.title;
+    var preview = document.createElement('div');
+    title.classList.add("note-title");
+    preview.classList.add("note-preview");
+
+    div1.appendChild(title);
+    div1.appendChild(preview);
+    li.appendChild(div1);
+    li.appendChild(div2);
+    node.appendChild(li);
+  }
+
   function formatNotes() {
+    emptyDOM(document.getElementById("notes-feed"));
     var feed = document.getElementById("notes-feed");
     dummies.forEach(elem => {
-      var li = document.createElement('li');
-      var div1 = document.createElement('div');
-      var div2 = document.createElement('div');
-      li.classList.add("note-entry");
-      div1.classList.add("note-left");
-      div2.classList.add("note-right");
+      appendNode(feed, elem);
+    });
+  }
 
-      li.appendChild(div1);
-      li.appendChild(div2);
-      feed.appendChild(li);
+  function formatTags() {
+    emptyDOM(document.getElementById("notes-feed"));
+
+    var copy = [...dummies];
+    var displayed = [];
+    copy.forEach(elem => {
+      if (tags.some(r => elem.tags.includes(r)))
+        displayed.push(elem);
+    });
+
+    var feed = document.getElementById("notes-feed");
+    displayed.forEach(elem => {
+      appendNode(feed, elem);
+    });
+  }
+
+  function formatFollowing() {
+    emptyDOM(document.getElementById("notes-feed"));
+    var feed = document.getElementById("notes-feed");
+    dummies.forEach(elem => {
+      if (following.includes(elem.author))
+        appendNode(feed, elem);
     });
   }
 
@@ -60,9 +104,9 @@ function Feed() {
         <AccountIcon className="nav-icon" />
       </div>
       <div className="filter-options">
-        <p className="filter">ALL</p>
-        <p className="filter">FOLLOWING</p>
-        <p className="filter">TAGS</p>
+        <p className="filter" onClick={() => formatNotes()}>ALL</p>
+        <p className="filter" onClick={() => formatFollowing()}>FOLLOWING</p>
+        <p className="filter" onClick={() => formatTags()}>TAGS</p>
       </div>
       <ul id="notes-feed">
         {/* starts empty, filled dynamically */}
