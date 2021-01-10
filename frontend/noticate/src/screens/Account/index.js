@@ -3,7 +3,7 @@ import './index.css';
 import { ReactComponent as AccountIcon } from '../../assets/AccountIcon.svg';
 import { ReactComponent as HomeIcon } from '../../assets/HomeIcon.svg';
 import { ReactComponent as UploadIcon } from '../../assets/UploadIcon.svg';
-import SearchBarr from '../../assets/SearchBar.png';
+import { ReactComponent as SearchIcon } from '../../assets/SearchIcon.svg';
 
 function Account() {
 
@@ -72,8 +72,11 @@ function Account() {
   return (
     <div id="content">
     <div className="navigation-row">
-      <img src={SearchBarr} style = {{height: 30}} />
-      <HomeIcon className="nav-icon" />
+      <form className="search-container">
+        <input type="text" name="Search" className="search-input"/>
+        <SearchIcon style={{width: 20, height: 20}} />
+      </form>
+      <HomeIcon className="nav-icon" onClick={() => window.location.href = './feed'}/>
       <UploadIcon className="nav-icon" />
       <AccountIcon className="nav-icon" />
     </div>
