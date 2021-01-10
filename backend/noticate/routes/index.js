@@ -5,6 +5,12 @@ const db = require('./../db/db.js');
 const multer = require("multer"); 
 const uuid = require("uuid").v4;
 
+const AWS = require('aws-sdk');
+const fs = require('fs');
+
+// The name of the bucket that you have created
+const BUCKET_NAME = 'noticate';
+
 var mongodb = require('mongodb');
 var filenameorg;
 
@@ -19,6 +25,26 @@ const storage = multer.diskStorage({
   }
 })
 
+const uploadFile = (fileName) => {
+    // Read content from the file
+    const fileContent = fs.readFileSync(fileName);
+
+    // Setting up S3 upload parameters
+    const params = {
+        Bucket: BUCKET_NAME,
+        Key: 'cat.jpg', // File name you want to save as in S3
+        Body: fileContent
+    };
+
+    // Uploading files to the bucket
+    s3.upload(params, function(err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log(`File uploaded successfully. ${data.Location}`);
+    });
+};
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -29,6 +55,7 @@ const app = express();
 router.use(express.static('public'));
 
 router.post("/upload", upload.single('avatar'), (req, res) => {
+	uploadFile(`uploads/${filenameorg}`);
     	console.log(filenameorg);
 	return res.json({status: "OK"});
 });
